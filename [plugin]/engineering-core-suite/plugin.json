@@ -1,0 +1,11 @@
+{
+  "name": "engineering-core-suite",
+  "displayName": "Core Engineering, Security & AI SDK Suite",
+  "version": "2.0.0",
+  "description": "CodeGraph AST navigation, SQL database safety & migrations, zero-leak secret protection, Billion-Context folding, Antigravity SDK, and Gemini API development.",
+  "suggestedPrompts": [
+    "Audit codebase architecture and blast radius using CodeGraph",
+    "Scan repository and staged git diffs for exposed secrets or API keys",
+    "Design a transactional database migration and review query execution plans"
+  ]
+}

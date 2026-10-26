@@ -1,0 +1,11 @@
+{
+  "name": "marketing-growth-suite",
+  "displayName": "Marketing, Brand, SEO & Content Engine Suite",
+  "version": "2.0.0",
+  "description": "Technical & programmatic SEO, brand voice & positioning, multi-channel content engine (X, LinkedIn, video scripts), full-funnel launch campaigns, market research, and anti-AI-slop writing.",
+  "suggestedPrompts": [
+    "Run a technical and on-page SEO audit with schema.org markup and keyword mapping",
+    "Lock a durable brand voice profile and generate a multi-channel launch content suite",
+    "Plan a product launch campaign with positioning, landing page copy, and email sequence"
+  ]
+}

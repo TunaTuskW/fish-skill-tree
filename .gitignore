@@ -1,0 +1,33 @@
+# macOS & OS artifacts
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Environment & Secret Files (Zero-Leak Policy)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.jks
+id_rsa*
+id_ed25519*
+id_ecdsa*
+credentials.json
+client_secret*.json
+service-account*.json
+.netrc
+.npmrc
+.pypirc
+
+# Python & Node caches
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+node_modules/

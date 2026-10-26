@@ -1,0 +1,11 @@
+{
+  "name": "finance-quant-suite",
+  "displayName": "Finance, Quant & Accounting Suite",
+  "version": "2.0.0",
+  "description": "Institutional 3-statement financial modeling, DCF/LBO/Comps valuation, Excel auditing, quantitative math (SymPy/CVXPY), data science (Polars/DuckDB), and prediction market analytics.",
+  "suggestedPrompts": [
+    "Build and audit an integrated 3-statement DCF model in Excel",
+    "Run a Polars/DuckDB statistical regression with 95% confidence intervals",
+    "Generate a balanced two-sided prediction market ticket"
+  ]
+}

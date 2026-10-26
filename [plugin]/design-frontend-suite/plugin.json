@@ -1,0 +1,11 @@
+{
+  "name": "design-frontend-suite",
+  "displayName": "UI/UX Design, Visual Systems & Frontend Suite",
+  "version": "2.0.0",
+  "description": "End-to-end UI/UX product design, design token extraction, 10-point visual audits, wireframing & SaaS dashboard architecture, Apple Liquid Glass, advanced motion, and modern web guidance.",
+  "suggestedPrompts": [
+    "Extract a cohesive design system with design-tokens.json and an interactive HTML preview",
+    "Audit this UI across 10 visual dimensions and eliminate generic AI-slop styling",
+    "Design a high-craft SaaS dashboard or conversion landing page with clear visual hierarchy"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "codegraph": {
+      "command": "codegraph",
+      "args": [
+        "serve",
+        "--mcp"
+      ]
+    },
+    "legalzoom": {
+      "serverUrl": "https://www.legalzoom.com/mcp"
+    },
+    "gmp-code-assist": {
+      "serverUrl": "https://mapscodeassist.googleapis.com/mcp"
+    }
+  }
+}

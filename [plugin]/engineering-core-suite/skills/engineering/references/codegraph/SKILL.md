@@ -70,15 +70,18 @@ Trace sensitive operations without reading dozens of files manually:
   codegraph callees httpClient
   ```
 
-#### Phase D: Fragility, Coupling & Impact Analysis
-1. Analyze the blast radius of central data models and shared utility symbols:
+#### Phase D: Fragility, Coupling & Impact Analysis (God Node Detection)
+1. **Detect "God Nodes" (Architectural Bottlenecks)**:
+   Identify central hubs with extreme in-degree (called by everything) or out-degree (calling everything). These singletons or monolithic utilities are primary failure points and refactoring hazards:
    ```bash
    codegraph impact <CoreModelOrUtility>
    ```
-2. Identify symbols with abnormally high fan-in (called by many modules) or fan-out (calling many modules) to detect tight coupling and refactoring risks.
-3. Synthesize the findings into an audit report highlighting:
-   - Architecture & Module Boundaries
-   - High-Risk / Heavily Coupled Components
+2. **Graph-First Token Conservation (71.5x Principle)**:
+   Never dump full files into context to understand symbol interactions. Traverse exact caller/callee hops with `codegraph explore` or `codegraph callers/callees` to preserve token budget.
+3. Identify symbols with abnormally high fan-in or fan-out to detect tight coupling and modularity gaps.
+4. Synthesize the findings into an audit report highlighting:
+   - Architecture & Module Boundaries (Functional Community Clusters)
+   - God Nodes & Heavily Coupled Central Components
    - Missing Error Handling or Validation on Critical Call Chains
    - Recommended Refactorings or Test Coverage Gaps
 

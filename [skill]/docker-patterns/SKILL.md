@@ -522,6 +522,32 @@ docker compose down -v                # Also remove volumes (DESTRUCTIVE)
 docker system prune                   # Remove unused images/containers
 ```
 
+### Container Lifecycle & Disk Hygiene (Preventing Host Disk Exhaustion)
+
+Unmanaged image rebuilds, dangling layers, BuildKit caches, and unrotated container logs rapidly exhaust macOS/Linux host disk storage. Enforce these lifecycle rules on every Docker workflow:
+
+1. **Pre- & Post-Build Disk Audit**:
+   ```bash
+   docker system df -v                        # Inspect image, container, volume, and build-cache footprint
+   ```
+2. **Routine Layer & Build Cache Pruning**:
+   ```bash
+   docker compose down --remove-orphans       # Stop services and remove orphaned containers
+   docker image prune -f                      # Remove dangling (<none>) intermediate layers after rebuilds
+   docker builder prune --filter "until=24h" -f  # Reclaim stale BuildKit cache without wiping active layers
+   ```
+3. **Bounded Container Logging (Compose Standard)**:
+   Always bound `json-file` log growth in `docker-compose.yml` to prevent runaway disk consumption:
+   ```yaml
+   logging:
+     driver: "json-file"
+     options:
+       max-size: "10m"
+       max-file: "3"
+   ```
+4. **Ephemeral Test & One-Off Containers**:
+   Always pass `--rm` when running one-off tasks (`docker compose run --rm app npm test` or `docker run --rm ...`) so exited containers never accumulate on disk.
+
 ### Debugging Network Issues
 
 ```bash

@@ -2,6 +2,7 @@
 
 ## 1. Excel & Financial Modeling Integrity
 - **Formula Integrity**: Always write native spreadsheet formulas (`=SUM(...)`, `=INDEX/MATCH`, etc.) for computed outputs so users can inspect calculation trails in Excel. Never paste hardcoded figures into calculated cells.
+- **Batched Spreadsheet Mutations**: Consolidate Google Sheets and Excel updates into atomic `batch` / `raw-batch` payloads or parameterized sync scripts (`trading-log-sync`) instead of running dozens of sequential single-cell CLI calls.
 - **Explicit Assumptions Block**: Clearly isolate macroeconomic and financial assumptions (WACC, discount rates, tax rates, terminal growth rates, margins) into a dedicated "Assumptions" sheet or header block.
 - **Format Consistency**: Enforce standard accounting formatting (two decimal places, currency symbols, negative numbers in parentheses) and distinguish GAAP metrics from Non-GAAP adjustments.
 - **Regulatory Disclaimer**: Note that financial and valuation analyses are quantitative evaluations, not personalized investment, legal, or tax advice.

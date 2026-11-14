@@ -10,19 +10,24 @@ Instead of loading hundreds of individual skill descriptions into every prompt, 
 
 ```text
 fish-skill-tree/
-├── [plugin]/                  # 4 Master Sector Suites + 2 Workspace Connectors
-│   ├── finance-quant-suite/   # /finance router (13 sub-playbooks: DCF, LBO, 3-Statement, Polars, Quant, Prediction Markets)
-│   ├── engineering-core-suite/# /engineering router (10 sub-playbooks: CodeGraph AST, SQL safety, Secret Guard, Gemini SDKs)
-│   ├── design-frontend-suite/ # /design router (10 sub-playbooks: UI/UX audit, Design Tokens, Liquid Glass, Motion, Web APIs)
-│   ├── marketing-growth-suite/# /marketing router (9 sub-playbooks: Technical/Programmatic SEO, Positioning, Content, Launch)
-│   ├── gdocs/                 # Google Docs read/write/markdown sync plugin
-│   └── gsheets/               # Google Sheets read/write/formula/chart plugin
-├── [skill]/                   # 320 standalone domain & framework skills (on-demand vault)
-└── [mcp]/                     # Model Context Protocol (MCP) server configs & multi-IDE context rules
+├── [plugin]/                        # 4 Master Sector Suites + 4 Workspace/Partner Connectors
+│   ├── finance-quant-suite/         # /finance router (13 sub-playbooks: DCF, LBO, 3-Statement, Polars, Quant, Prediction Markets)
+│   ├── engineering-core-suite/      # /engineering router (10 sub-playbooks: CodeGraph AST, SQL safety, Secret Guard, Gemini SDKs)
+│   ├── design-frontend-suite/       # /design router (10 sub-playbooks: UI/UX audit, Design Tokens, Liquid Glass, Motion, Web APIs)
+│   ├── marketing-growth-suite/      # /marketing router (9 sub-playbooks: Technical/Programmatic SEO, Positioning, Content, Launch)
+│   ├── gdocs/                       # Google Docs v0.0.9 read/write/markdown sync plugin (SHA-256 verified binary)
+│   ├── gsheets/                     # Google Sheets v0.0.8 read/write/formula/chart plugin (SHA-256 verified binary)
+│   ├── context7/                    # Context7 v1.0.1 live library documentation MCP & skill plugin
+│   └── modern-web-guidance-plugin/  # Chrome Modern Web Guidance v1.0.0 & Manifest V3 extension skills
+├── [skill]/                         # 322 standalone domain & framework skills (including security-guard & trading-log-sync)
+├── scripts/                         # Security AST scanner (scan_security_ast.py) & Multi-Target Synchronizer (sync_ecosystem.py)
+├── reports/                         # Full 100% ecosystem security & malware audit reports
+├── tests/                           # 125 unit/adversarial tests + 62 opaque-box E2E tests (Tiers 1-4)
+└── [mcp]/                           # Model Context Protocol (MCP) server configs & multi-IDE context rules
     ├── mcp_config.json
     ├── financial_services_mcp.json
-    ├── context_mode_configs/  # Context-mode configs for Claude Code, Cursor, Codex, Zed, VS Code, etc.
-    └── mcp_servers/           # Lazy-loaded MCP tool schemas (CodeGraph, Chrome DevTools)
+    ├── context_mode_configs/        # Context-mode configs for Claude Code, Cursor, Codex, Zed, VS Code, etc.
+    └── mcp_servers/                 # Lazy-loaded MCP tool schemas (CodeGraph, Chrome DevTools)
 ```
 
 ---
@@ -57,9 +62,17 @@ Keep `[skill]/` outside your active prompt directory as a zero-token vault and s
 ln -s "$(pwd)/[skill]/rust-engineer" /path/to/your-project/.agents/skills/rust-engineer
 ```
 
-### 3. Pre-Commit Secret Scanning
-Run the zero-dependency secret scanner inside `[skill]/sensitive-data-guard` before committing code:
+### 3. Pre-Commit Secret & AST Malware Scanning
+Run the zero-dependency secret scanner and AST security scanner before committing code (automatically enforced by `.git/hooks/pre-commit`):
 
 ```bash
 python3 "[skill]/sensitive-data-guard/scripts/scan_secrets.py" --staged
+python3 scripts/scan_security_ast.py --staged
+```
+
+### 4. Multi-Target Ecosystem Synchronization
+Synchronize local `[plugin]/` and `[skill]/` updates with `~/.gemini/config/` and `~/.gemini/skill_vault/` (with automatic `~/vibe/` <-> `/Users/mac/vibe/` path translation and `auth.json` Zero-Leak exclusion):
+
+```bash
+python3 scripts/sync_ecosystem.py --host-sync --direction repo-to-active
 ```

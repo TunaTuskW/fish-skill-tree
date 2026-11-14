@@ -40,23 +40,70 @@ if [ ! -e "$SHIM" ]; then
   fi
 fi
 
+# --- Cryptographic Integrity Verification ---
+verify_sha256() {
+  _file="$1"
+  _expected="$2"
+  _actual=""
+  if command -v sha256sum >/dev/null 2>&1; then
+    _actual=$(sha256sum "$_file" | awk '{print $1}')
+  elif command -v shasum >/dev/null 2>&1; then
+    _actual=$(shasum -a 256 "$_file" | awk '{print $1}')
+  elif command -v openssl >/dev/null 2>&1; then
+    _actual=$(openssl dgst -sha256 "$_file" | awk '{print $NF}')
+  elif command -v python3 >/dev/null 2>&1; then
+    _actual=$(python3 -c "import hashlib, sys; print(hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest())" "$_file")
+  else
+    echo "error: no sha256 verification tool found (sha256sum, shasum, openssl, python3)" >&2
+    return 1
+  fi
+  if [ "$_actual" != "$_expected" ]; then
+    echo "error: SHA-256 integrity verification failed for $_file" >&2
+    echo "  expected: $_expected" >&2
+    echo "  actual:   $_actual" >&2
+    return 1
+  fi
+  return 0
+}
+
+case "$(uname -s)" in
+  Linux) OS=linux ;;
+  Darwin) OS=darwin ;;
+  *) echo "error: unsupported OS: $(uname -s)" >&2; exit 1 ;;
+esac
+case "$(uname -m)" in
+  x86_64 | amd64) ARCH=x86_64 ;;
+  arm64 | aarch64) ARCH=arm64 ;;
+  *) echo "error: unsupported architecture: $(uname -m)" >&2; exit 1 ;;
+esac
+
+case "${OS}_${ARCH}" in
+  darwin_arm64)  EXPECTED_SHA256="19a6c0a37692e8a9bc1b32052f281fea9ed4607170dfc9c027284166af419514" ;;
+  darwin_x86_64) EXPECTED_SHA256="a6acc2fe9a176e3f830ba4760415b70563ec8e7b35c2d11ffeabba7654cfd4fb" ;;
+  linux_arm64)   EXPECTED_SHA256="8a4cf31be0fe4dd5d5cd3ce23b3a67b7b4d26a16d5bd0830f89589ba757f09a9" ;;
+  linux_x86_64)  EXPECTED_SHA256="7e24ae326c1575a7be01ea1a5eb354925cbb9c7036f78b23ef3462bab1461030" ;;
+  *) echo "error: unsupported platform: ${OS}_${ARCH}" >&2; exit 1 ;;
+esac
+
+# Verify pre-existing cached binary integrity; purge if invalid
+if [ -f "$TARGET" ]; then
+  if ! verify_sha256 "$TARGET" "$EXPECTED_SHA256" 2>/dev/null; then
+    rm -f "$TARGET"
+  fi
+fi
+
 if [ ! -x "$TARGET" ]; then
-  case "$(uname -s)" in
-    Linux) OS=linux ;;
-    Darwin) OS=darwin ;;
-    *) echo "error: unsupported OS: $(uname -s)" >&2; exit 1 ;;
-  esac
-  case "$(uname -m)" in
-    x86_64 | amd64) ARCH=x86_64 ;;
-    arm64 | aarch64) ARCH=arm64 ;;
-    *) echo "error: unsupported architecture: $(uname -m)" >&2; exit 1 ;;
-  esac
   mkdir -p "$BIN_DIR"
   rm -f "$BIN_DIR/$TOOL"-*
   TMP="$BIN_DIR/.$TOOL.tmp.$$"
   if ! curl -fsSL "$BASE_URL/${OS}_${ARCH}/$TOOL" -o "$TMP"; then
     rm -f "$TMP"
     echo "error: failed to download $BASE_URL/${OS}_${ARCH}/$TOOL" >&2
+    exit 1
+  fi
+  if ! verify_sha256 "$TMP" "$EXPECTED_SHA256"; then
+    rm -f "$TMP"
+    echo "error: downloaded binary failed checksum verification" >&2
     exit 1
   fi
   chmod +x "$TMP"

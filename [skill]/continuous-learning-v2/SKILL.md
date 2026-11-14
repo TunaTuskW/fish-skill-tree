@@ -23,6 +23,9 @@ An advanced learning system that turns your Claude Code sessions into reusable k
 - Managing project-scoped vs global instincts
 - Promoting instincts from project to global scope
 
+> [!CAUTION]
+> **Token Drain & Background Daemon Guardrail**: Never auto-spawn `agents/start-observer.sh` or `agents/observer-loop.sh` in the background without explicit user opt-in. Unbounded background observer loops repeatedly invoke CLI model calls across session transcripts and can exhaust API token quotas. Prefer on-demand instinct evaluation (`scripts/instinct-cli.py status` / `evolve`) at milestone boundaries.
+
 ## What's New in v2.1
 
 | Feature | v2.0 | v2.1 |

@@ -8,9 +8,10 @@
 - **Ban Generic AI Patterns**: Never default to unrequested purple-to-blue neon gradients, arbitrary box-shadows, mismatched border radii, or 3-column generic icon cards with vague lorem-ipsum copy.
 - **Complete State Coverage**: Every interactive view and component must account for all 5 states: **Default**, **Loading (skeleton/shimmer)**, **Empty (actionable zero-state)**, **Error (inline recovery)**, and **Success/Populated**.
 
-## 3. Accessibility & Modern Web APIs
+## 3. Accessibility, Modern Web APIs & Visual Verification
 - **Contrast & Keyboard Parity**: Maintain WCAG AA contrast ($\ge 4.5:1$ body text, $\ge 3:1$ large text/UI controls), visible `:focus-visible` rings, and full keyboard operability.
 - **Modern Native Primitives**: Prefer native `<dialog>`, Popover API, CSS Grid/Subgrid, Container Queries (`@container`), `:has()`, and `tabular-nums` over brittle legacy JS layout hacks.
+- **Live Browser Verification**: Never claim a UI layout, interactive control, or styling fix is complete from blind source edits alone; inspect rendered DOM state and visual output in the browser when a live server or preview is available.
 
 ## 4. Mandatory Exports Mirror
 - Whenever design systems (`DESIGN.md`, `design-tokens.json`), HTML previews, UI prototypes, or frontend components are generated or updated, ALWAYS save or copy a duplicate into `~/vibe/` following the project subdirectory taxonomy.

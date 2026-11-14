@@ -151,14 +151,14 @@ const SESSION_CAP = 50_000n;     // 0.05 USDC across the whole session
 const normalizeAddress = (a: string) => (a.startsWith("0x") ? a.toLowerCase() : a);
 const ALLOWED_ASSETS = new Set(
   [
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",  // USDC, Solana mainnet
+    "<SOLANA_USDC_MINT_ADDRESS>",  // USDC, Solana mainnet
     "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",    // USDC, Base
   ].map(normalizeAddress),
 );
 // Who you are willing to pay. Without this, any 402 an agent happens to hit
 // can name its own recipient.
 const ALLOWED_PAY_TO = new Set(
-  ["7pr7NCaQRz5PEhPy7BAeB3Z72TVkiShhjRyVCN5DA6yC"].map(normalizeAddress),
+  ["<SOLANA_PAY_TO_RECIPIENT_ADDRESS>"].map(normalizeAddress),
 );
 
 client.registerPolicy((_x402Version, requirements) =>
@@ -283,7 +283,7 @@ For the hosted option, choose from the [facilitator list](https://docs.x402.org/
 import { findAssociatedTokenPda, TOKEN_PROGRAM_ADDRESS } from "@solana-program/token";
 
 const [ata] = await findAssociatedTokenPda({
-  mint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",   // USDC mainnet
+  mint: "<SOLANA_USDC_MINT_ADDRESS>",   // USDC mainnet
   owner: payToAddress,
   tokenProgram: TOKEN_PROGRAM_ADDRESS,                     // TOKEN_2022_PROGRAM_ADDRESS for Token-2022 mints
 });

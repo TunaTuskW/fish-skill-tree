@@ -20,9 +20,17 @@ id_ecdsa*
 credentials.json
 client_secret*.json
 service-account*.json
+auth.json
+*token*.json
 .netrc
 .npmrc
 .pypirc
+
+# Agent Metadata, Diagnostics & Transcripts
+.agents/
+
+# CodeGraph AST Index & Cache
+.codegraph/
 
 # Python & Node caches
 __pycache__/

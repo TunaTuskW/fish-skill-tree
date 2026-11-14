@@ -12,8 +12,13 @@
 
 ## 3. Sensitive Data & Zero-Leak Invariant
 - **Zero-Leak Policy**: Under NO circumstances commit, stage, push, or transmit API keys, cryptographic private keys (`.pem`, `.key`, `id_rsa`), database URIs with passwords, JWT/OAuth tokens, or PII to Git or external endpoints.
+- **Automated Security & Secret Verification**: Run `scan_secrets.py --staged` and `scan_security_ast.py --staged` (enforced via `.git/hooks/pre-commit`) before every commit, and audit third-party skills/scripts for dynamic execution, unpinned binary downloads, and outbound exfiltration sinks before integration.
 - **Explicit Git Staging**: Never run `git add .` or `git add -A`. Stage audited files explicitly by path and verify `git diff --cached` before every commit.
-- **Mandatory `.gitignore`**: Ensure `.env*` (except `.env.example`), `*.pem`, `*.key`, `id_rsa*`, and `*secret*`/`*credential*` files are excluded in `.gitignore`.
+- **Mandatory `.gitignore`**: Ensure `.env*` (except `.env.example`), `*.pem`, `*.key`, `id_rsa*`, `auth.json`, `.agents/`, `.codegraph/`, and `*secret*`/`*credential*` files are excluded in `.gitignore`.
 
-## 4. Mandatory Exports Mirror
+## 4. Execution Discipline & Anti-Slop Communication
+- **Zero Busy-Wait Polling**: Never loop on `manage_task`, `schedule`, or shell `sleep` to poll background jobs; rely on reactive completion wakeups and batch multi-step shell operations into single deterministic scripts.
+- **BLUF & Zero Glaze**: Lead with concrete findings, exact file links, and verified command results (Bottom Line Up Front). Never emit sycophantic filler or duplicate walkthrough artifacts.
+
+## 5. Mandatory Exports Mirror
 - Whenever source code, database schemas, migration scripts, or engineering reports are generated or updated, ALWAYS save or copy a duplicate into `~/vibe/` following the project subdirectory taxonomy.

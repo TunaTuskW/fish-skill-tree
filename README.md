@@ -19,7 +19,7 @@ fish-skill-tree/
 │   ├── gsheets/                     # Google Sheets v0.0.8 read/write/formula/chart plugin (SHA-256 verified binary)
 │   ├── context7/                    # Context7 v1.0.1 live library documentation MCP & skill plugin
 │   └── modern-web-guidance-plugin/  # Chrome Modern Web Guidance v1.0.0 & Manifest V3 extension skills
-├── [skill]/                         # 322 standalone domain & framework skills (including security-guard & trading-log-sync)
+├── [skill]/                         # 323 standalone domain & framework skills (including humanizer v4.0.0, security-guard & trading-log-sync)
 ├── scripts/                         # Security AST scanner (scan_security_ast.py) & Multi-Target Synchronizer (sync_ecosystem.py)
 ├── reports/                         # Full 100% ecosystem security & malware audit reports
 ├── tests/                           # 125 unit/adversarial tests + 62 opaque-box E2E tests (Tiers 1-4)

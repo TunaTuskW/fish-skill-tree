@@ -29,6 +29,9 @@ auth.json
 # Agent Metadata, Diagnostics & Transcripts
 .agents/
 
+# Machine-local personal skills excluded from public repo
+trading-log-sync/
+
 # CodeGraph AST Index & Cache
 .codegraph/
 

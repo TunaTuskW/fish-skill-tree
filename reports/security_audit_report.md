@@ -12,7 +12,7 @@
 
 This comprehensive security audit establishes an automated static code analysis, secret detection, and supply-chain verification boundary across the entire `fish-skill-tree` ecosystem.
 
-A complete 100% census of all **322 standalone skills** in `[skill]/` (including newly integrated `trading-log-sync` and `security-guard`) and all **8 plugin suites** (`design-frontend-suite`, `engineering-core-suite`, `finance-quant-suite`, `marketing-growth-suite`, `gdocs` v0.0.9, `gsheets` v0.0.8, `context7` v1.0.1, and `modern-web-guidance-plugin` v1.0.0) in `[plugin]/` was conducted using the newly engineered AST Security & Malware Scanner Engine (`scripts/scan_security_ast.py`) and the High-Entropy Secret Scanner (`[skill]/sensitive-data-guard/scripts/scan_secrets.py`).
+A complete 100% census of all standalone skills in `[skill]/` (including `security-guard` and `humanizer`) and all **8 plugin suites** (`design-frontend-suite`, `engineering-core-suite`, `finance-quant-suite`, `marketing-growth-suite`, `gdocs` v0.0.9, `gsheets` v0.0.8, `context7` v1.0.1, and `modern-web-guidance-plugin` v1.0.0) in `[plugin]/` was conducted using the newly engineered AST Security & Malware Scanner Engine (`scripts/scan_security_ast.py`) and the High-Entropy Secret Scanner (`[skill]/sensitive-data-guard/scripts/scan_secrets.py`).
 
 ### Key Audit Metrics
 

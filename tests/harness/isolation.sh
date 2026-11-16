@@ -198,15 +198,24 @@ EOF
 mock_active_skills_dir() {
     local root_dir="$1"
     local skills_dir="$root_dir/fake_home/.gemini/config/skills"
-    mkdir -p "$skills_dir/trading-log-sync"
+    mkdir -p "$skills_dir/custom-sync-skill" "$skills_dir/trading-log-sync"
     
+    cat << 'EOF' > "$skills_dir/custom-sync-skill/SKILL.md"
+---
+name: custom-sync-skill
+description: Synthetic active skill fixture for bi-directional synchronization verification.
+---
+# Custom Sync Skill
+Instruction content for custom skill synchronization.
+EOF
+
     cat << 'EOF' > "$skills_dir/trading-log-sync/SKILL.md"
 ---
 name: trading-log-sync
-description: Fast one-command Google Sheets synchronization for Creatures of Sonaria stand check-ins.
+description: Excluded personal workspace skill fixture.
 ---
-# Trading Log Sync
-Instruction content for trading log synchronization.
+# Excluded Skill
+Should remain excluded from repository synchronization.
 EOF
 
     echo "$skills_dir"

@@ -82,8 +82,9 @@ live_exit=$?
 
 assert_exit_code 0 "$live_exit" "Live sync must exit code 0"
 
-# Verify active skills synced to repo
-assert_file_exists "$MOCK_REPO/[skill]/trading-log-sync/SKILL.md" "Active skill must be mirrored into repository"
+# Verify active skills synced to repo (and excluded personal skill stays excluded)
+assert_file_exists "$MOCK_REPO/[skill]/custom-sync-skill/SKILL.md" "Active skill must be mirrored into repository"
+assert_file_not_exists "$MOCK_REPO/[skill]/trading-log-sync/SKILL.md" "Excluded personal skill trading-log-sync must NOT be mirrored into repository"
 assert_file_exists "$MOCK_REPO/[plugin]/context7/plugin.json" "Active connector must be mirrored into repository"
 
 # Verify Zero-Leak exclusion in live sync

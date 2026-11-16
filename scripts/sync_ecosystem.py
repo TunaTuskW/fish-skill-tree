@@ -23,6 +23,7 @@ EXCLUDED_NAMES = {
     ".pytest_cache",
     ".DS_Store",
     "science",
+    "trading-log-sync",
 }
 
 EXCLUDED_PREFIXES = (

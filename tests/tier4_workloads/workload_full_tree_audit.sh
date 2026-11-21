@@ -131,8 +131,8 @@ assert_exit_code 0 "$ast_plugins_exit" "Plugin suites AST security scan must pas
 assert_file_exists "$json_report" "Audit report JSON must exist"
 assert_json_valid "$json_report" "Audit report JSON must be valid"
 
-# Verify scale (322 standalone skills + 8 plugins)
-assert_equals "322" "$total_skills" "Full tree must contain all 322 standalone skills"
+# Verify scale (323 standalone skills + 8 plugins)
+assert_equals "323" "$total_skills" "Full tree must contain all 323 standalone skills"
 assert_equals "8" "$total_plugins" "Full tree must contain all 8 plugin suites"
 
 # Benchmark check (< 60 seconds)

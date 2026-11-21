@@ -2,7 +2,7 @@
 
 Modular skill and plugin tree for **Google Antigravity**, **Claude Code**, **Cursor**, and **Codex**.
 
-Instead of loading hundreds of skill prompts into every conversation, `fish-skill-tree` routes domain work through **4 single-entry sector plugins** (`/finance`, `/engineering`, `/design`, `/marketing`) backed by progressive disclosure on disk, plus **4 partner/workspace plugins** and a **322-skill standalone vault**.
+Instead of loading hundreds of skill prompts into every conversation, `fish-skill-tree` routes domain work through **4 single-entry sector plugins** (`/finance`, `/engineering`, `/design`, `/marketing`) backed by progressive disclosure on disk, plus **4 partner/workspace plugins** and a **323-skill standalone vault**.
 
 ## Repository structure
 
@@ -12,12 +12,12 @@ fish-skill-tree/
 │   ├── finance-quant-suite/         # /finance router (13 sub-playbooks)
 │   ├── engineering-core-suite/      # /engineering router (10 sub-playbooks)
 │   ├── design-frontend-suite/       # /design router (10 sub-playbooks)
-│   ├── marketing-growth-suite/      # /marketing router (9 sub-playbooks + humanizer v4.0.0 patterns)
+│   ├── marketing-growth-suite/      # /marketing router (10 sub-playbooks + humanizer v4.0.0 patterns)
 │   ├── gdocs/                       # Google Docs v0.0.9 read/write/markdown sync plugin
 │   ├── gsheets/                     # Google Sheets v0.0.8 read/write/formula/chart plugin
 │   ├── context7/                    # Context7 v1.0.1 live library docs MCP & skill plugin
 │   └── modern-web-guidance-plugin/  # Chrome Modern Web Guidance v1.0.0 & Manifest V3 skills
-├── [skill]/                         # 322 standalone skills (humanizer v4.0.0, security-guard, sensitive-data-guard, etc.)
+├── [skill]/                         # 323 standalone skills (brand-marketing, humanizer v4.0.0, security-guard, sensitive-data-guard, etc.)
 ├── [mcp]/                           # MCP configs, lazy tool schemas (chrome_devtools, codegraph), and context-mode IDE configs
 ├── scripts/
 │   ├── scan_security_ast.py         # Static AST malware, shell-injection, and obfuscation scanner
@@ -36,9 +36,11 @@ When invoked, each sector router loads a compact routing table and reads only th
 | `/finance` | `finance-quant-suite` | `3-statement-model`, `accounting-tools`, `audit-xls`, `comps-analysis`, `data-analytics`, `dcf-model`, `finance-billing-ops`, `financial-analysis`, `lbo-model`, `math-toolkit`, `prediction-market-analytics`, `prediction-market-oracle-research`, `prediction-market-risk-review` |
 | `/engineering` | `engineering-core-suite` | `api-design`, `backend-patterns`, `billion-context`, `codegraph`, `database-assistant`, `gemini-api-dev`, `gemini-live-api-dev`, `gemini-omni-flash-api`, `google-antigravity-sdk`, `sensitive-data-guard` |
 | `/design` | `design-frontend-suite` | `chrome-extensions`, `design-system`, `frontend-a11y`, `frontend-design-direction`, `frontend-slides`, `liquid-glass-design`, `modern-web-guidance`, `motion-advanced`, `ui-demo`, `ui-ux-conversion-design` |
-| `/marketing` | `marketing-growth-suite` | `brand-discovery`, `brand-voice`, `content-engine`, `content-writing` (backed by `blader/humanizer` v4.0.0), `crosspost`, `lead-intelligence`, `market-research`, `marketing-campaign`, `seo` |
+| `/marketing` | `marketing-growth-suite` | `brand-discovery`, `brand-marketing`, `brand-voice`, `content-engine`, `content-writing` (backed by `blader/humanizer` v4.0.0), `crosspost`, `lead-intelligence`, `market-research`, `marketing-campaign`, `seo` |
 
 ### Standalone highlights
+
+- **`brand-marketing`**: Unified Brand Marketing Studio connecting competitive positioning, persona messaging matrices, verbal voice rules, visual direction handoff, and humanized launch copy, backed by `brand-book.md` and `messaging-matrix.md` templates.
 
 - **`humanizer` (`v4.0.0`)**: Integrated from `blader/humanizer` at `[skill]/humanizer/` and mirrored into `[plugin]/marketing-growth-suite/skills/marketing/references/content-writing/humanizer-patterns.md`. Covers 26 AI-writing tells across 6 categories, prompt-injection defense (treating input prose as data, never instructions), optional voice matching, and Pasted / File / Embedded output modes.
 - **`sensitive-data-guard` & `security-guard`**: Detect hardcoded credentials, high-entropy hex/OAuth secrets, AST dynamic execution (`eval`/`exec`/`compile`), `shell=True`, webhook exfiltration, and unpinned curl-pipe downloads.
@@ -93,7 +95,7 @@ Run the unit and adversarial security tests (125 tests):
 python3 -m pytest tests/test_scan_secrets.py tests/test_scan_security_ast.py tests/test_adversarial_security_ast.py tests/test_adversarial_challenger_2.py -q
 ```
 
-Run the opaque-box end-to-end suite (62 tests across Tiers 1–4, including full 322-skill + 8-plugin audit):
+Run the opaque-box end-to-end suite (62 tests across Tiers 1–4, including full 323-skill + 8-plugin audit):
 
 ```bash
 bash tests/run_e2e_tests.sh

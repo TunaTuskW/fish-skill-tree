@@ -1,0 +1,11 @@
+{
+  "name": "ops-research-suite",
+  "displayName": "Media, Networking, Science & Business Ops Suite",
+  "version": "1.0.0",
+  "description": "Video/Remotion/Manim media production, homelab & Cisco networking automation, scientific literature/PubMed/USPTO & healthcare workflows, and document/logistics operations.",
+  "suggestedPrompts": [
+    "Generate a programmatic video workflow using Remotion or Manim",
+    "Configure homelab VLANs, WireGuard VPN, Pi-hole DNS, or network diagnostics",
+    "Run scientific literature review, PubMed/USPTO search, or document processing"
+  ]
+}

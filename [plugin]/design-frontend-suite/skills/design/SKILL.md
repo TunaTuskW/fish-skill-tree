@@ -24,6 +24,7 @@ Do **NOT** load every sub-playbook at once. Analyze the user's request, decide w
 | **7. Frontend Accessibility (a11y)** | Semantic HTML, ARIA attributes, keyboard navigation, focus traps, and screen reader compliance | [`references/frontend-a11y/SKILL.md`](references/frontend-a11y/SKILL.md) |
 | **8. Interactive Slides & UI Demos** | Building HTML presentations/pitch decks or recording Playwright UI walkthrough videos | [`references/frontend-slides/SKILL.md`](references/frontend-slides/SKILL.md) & [`references/ui-demo/SKILL.md`](references/ui-demo/SKILL.md) |
 | **9. Chrome Extensions (Manifest V3)** | Building browser extensions, side panels, content scripts, service workers, or Chrome Web Store packages | [`../../../modern-web-guidance-plugin/skills/chrome-extensions/SKILL.md`](../../../modern-web-guidance-plugin/skills/chrome-extensions/SKILL.md) |
+| **10. Extended UI, A11y & Motion Packs** | WCAG 2.2 accessibility, dashboards, taste distillation, React perf, iOS icons, click-path audits, or motion foundations | [`references/INDEX.md#extended`](references/INDEX.md#extended) |
 
 ## Execution Workflow
 1. Identify the 1–3 relevant sub-modules from the routing table above based on the user's design or frontend task.

@@ -24,7 +24,7 @@ Do **NOT** load every sub-playbook at once. Analyze the user's request, decide w
 | **7. Gemini Live API (WebSockets)** | Real-time bidirectional audio/video streaming, VAD, and live session management | [`references/gemini-live-api-dev/SKILL.md`](references/gemini-live-api-dev/SKILL.md) |
 | **8. Gemini Omni Flash Video API** | Generative video editing, text/image-to-video, and frame transitions (`gemini-omni-1.1-flash`) | [`references/gemini-omni-flash-api/SKILL.md`](references/gemini-omni-flash-api/SKILL.md) |
 | **9. REST API & Backend Patterns** | Resource naming, pagination, rate limiting, error handling, and Node/Express/Next.js backend architecture | [`references/api-design/SKILL.md`](references/api-design/SKILL.md) & [`references/backend-patterns/SKILL.md`](references/backend-patterns/SKILL.md) |
-| **10. Tech-Specific Vault Skills** | If the repository uses a framework not listed above (e.g., Rust, Django, Docker, Prisma, Playwright) | Run `~/.local/bin/pull-skill search <keyword>` and link from `~/.gemini/skill_vault/skills/` |
+| **10. Languages, Frameworks, DevOps, DB & QA** | Python, Rust, Go, Java, Kotlin, Swift, JS/TS, C++/C#/PHP/Ruby, Postgres/MySQL/Redis/Prisma, Docker/K8s, E2E/QA packs | [`references/INDEX.md`](references/INDEX.md) (`languages/` & `devops-qa/`) |
 
 ## Execution Workflow
 1. Identify the 1–3 relevant sub-modules from the routing table above based on the user's coding task.

@@ -4,8 +4,8 @@ Use `fish-skill-tree` with **Claude Code**, **OpenAI Codex**, **Google Antigravi
 
 ## How the tree works across agents
 
-1. **Progressive disclosure**: Load the four compact sector routers under `[plugin]/` (`finance-quant-suite`, `engineering-core-suite`, `design-frontend-suite`, `marketing-growth-suite`) instead of indexing all `294` standalone skills into every prompt. Each router reads only the matching `references/*/SKILL.md` playbooks when a task triggers that domain.
-2. **On-demand standalone vault**: Symlink or copy unique folders from `[skill]/` (such as `humanizer`, `security-guard`, `rust-engineer`, `playwright-pro`) into project or global skill directories only when needed — zero duplicates with `[plugin]/`.
+1. **Progressive disclosure (`6` sector suites + `4` partner plugins)**: Load the compact sector routers under `[plugin]/` (`finance-quant-suite`, `engineering-core-suite`, `engineering-ops-suite`, `design-frontend-suite`, `marketing-growth-suite`, `ops-research-suite`) instead of flattening ~300 skills into your root directory. Each suite routes from `SKILL.md` $\rightarrow$ `references/INDEX.md` $\rightarrow$ only the matching sub-playbook.
+2. **Standalone direct tools (`12` skills)**: Symlink or copy `[skill]/` items (`humanizer`, `security-guard`, `tdd-workflow`, `git-workflow`, `search-first`, etc.) directly into project or global skill directories with zero duplicate overlap against `[plugin]/`.
 3. **Global rules, context-mode, and sanitized MCP packs**: Use `[mcp]/GEMINI.md`, `[mcp]/mcp_config.json` (covering `codegraph`, `davinci-resolve`, `gmp-code-assist`, `legalzoom` with censored paths), `[mcp]/financial_services_mcp.json`, and `[mcp]/context_mode_configs/<agent>/` cleanly across workspaces.
 
 Set an environment variable once to run the copy commands below from anywhere:
@@ -22,7 +22,7 @@ Claude Code reads skills from `~/.claude/skills/` (global) or `.claude/skills/` 
 
 ```bash
 mkdir -p ~/.claude/skills
-for suite in finance-quant-suite engineering-core-suite design-frontend-suite marketing-growth-suite; do
+for suite in finance-quant-suite engineering-core-suite engineering-ops-suite design-frontend-suite marketing-growth-suite ops-research-suite; do
   ln -s "$FISH_TREE/[plugin]/$suite/skills/"* ~/.claude/skills/
 done
 
@@ -48,8 +48,8 @@ Codex discovers `SKILL.md` folders under `~/.codex/skills/` (global) or `.codex/
 ```bash
 mkdir -p ~/.codex/skills ~/.codex
 
-# Link the 4 sector routers
-for suite in finance-quant-suite engineering-core-suite design-frontend-suite marketing-growth-suite; do
+# Link the 6 sector routers
+for suite in finance-quant-suite engineering-core-suite engineering-ops-suite design-frontend-suite marketing-growth-suite ops-research-suite; do
   ln -s "$FISH_TREE/[plugin]/$suite/skills/"* ~/.codex/skills/
 done
 
@@ -92,7 +92,7 @@ Cursor loads `.cursor/skills/`, `.cursor/rules/*.mdc`, `hooks.json`, and `mcp.js
 ```bash
 mkdir -p .cursor/skills .cursor/rules
 
-for suite in finance-quant-suite engineering-core-suite design-frontend-suite marketing-growth-suite; do
+for suite in finance-quant-suite engineering-core-suite engineering-ops-suite design-frontend-suite marketing-growth-suite ops-research-suite; do
   ln -s "$FISH_TREE/[plugin]/$suite/skills/"* .cursor/skills/
 done
 
@@ -109,13 +109,13 @@ Most portable coding agents (`Gemini CLI`, `OpenCode`, `pi`, `Zed`, `VS Code Cop
 
 ```bash
 mkdir -p .agents/skills
-for suite in finance-quant-suite engineering-core-suite design-frontend-suite marketing-growth-suite; do
+for suite in finance-quant-suite engineering-core-suite engineering-ops-suite design-frontend-suite marketing-growth-suite ops-research-suite; do
   ln -s "$FISH_TREE/[plugin]/$suite/skills/"* .agents/skills/
 done
 
-# Pull extra standalone framework/domain skills per repo
-ln -s "$FISH_TREE/[skill]/rust-engineer" .agents/skills/rust-engineer
-ln -s "$FISH_TREE/[skill]/playwright-pro" .agents/skills/playwright-pro
+# Pull extra standalone tools per repo
+ln -s "$FISH_TREE/[skill]/humanizer" .agents/skills/humanizer
+ln -s "$FISH_TREE/[skill]/tdd-workflow" .agents/skills/tdd-workflow
 ```
 
 2. **Prebuilt IDE / agent rule pack**: Browse `[mcp]/context_mode_configs/` for the folder matching your CLI or editor (`gemini-cli/`, `opencode/`, `pi/`, `zed/`, `vscode-copilot/`, `jetbrains-copilot/`, etc.) and copy its `AGENTS.md` / `GEMINI.md` / `copilot-instructions.md` and MCP JSON into the project root or home config directory.

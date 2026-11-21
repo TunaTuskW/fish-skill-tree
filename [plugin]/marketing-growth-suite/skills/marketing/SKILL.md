@@ -22,6 +22,7 @@ Do **NOT** load every sub-playbook at once. Analyze the user's request, decide w
 | **5. Brand Voice & Brand Discovery** | Extracting a durable writing style profile from real posts/docs or running structured brand positioning interviews | [`references/brand-voice/SKILL.md`](references/brand-voice/SKILL.md) & [`references/brand-discovery/SKILL.md`](references/brand-discovery/SKILL.md) |
 | **6. Market Research & Lead Intelligence** | Competitor teardowns, market sizing, ICP profiling, warm path discovery, and outbound sequencing | [`references/market-research/SKILL.md`](references/market-research/SKILL.md) & [`references/lead-intelligence/SKILL.md`](references/lead-intelligence/SKILL.md) |
 | **7. Anti-AI-Slop & Technical Copywriting** | Writing, editing, or humanizing articles, RFCs, whitepapers, READMEs, and high-signal product copy | [`references/content-writing/SKILL.md`](references/content-writing/SKILL.md) |
+| **8. Research, Growth, Docs & Product Lens** | Long-form articles, deep research, Exa search, docs governance, investor decks, social publishing, X API, or PMF diagnostics | [`references/INDEX.md#extended`](references/INDEX.md#extended) |
 
 ## Execution Workflow
 1. Identify the 1–3 relevant sub-modules from the routing table above based on the user's marketing, SEO, or writing task.

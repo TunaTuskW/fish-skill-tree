@@ -1,0 +1,11 @@
+{
+  "name": "engineering-ops-suite",
+  "displayName": "Engineering Ops, Security & Agent Architecture Suite",
+  "version": "1.0.0",
+  "description": "Application/API/DeFi security audits, compliance gates, AI agent harnesses, multi-agent orchestration, context/cost optimization, and ML pipelines.",
+  "suggestedPrompts": [
+    "Audit this codebase or agent harness for security vulnerabilities and compliance gaps",
+    "Design a multi-agent evaluation harness or context-budget optimization strategy",
+    "Inspect ML training/inference workflows and prompt caching architecture"
+  ]
+}

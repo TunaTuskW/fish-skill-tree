@@ -27,6 +27,7 @@ Do **NOT** load every sub-playbook at once. Analyze the user's request, decide w
 | **10. Quantitative Math & Optimization** | Symbolic calculus/algebra (SymPy), numerical linear algebra (SciPy), convex optimization (CVXPY) | [`references/math-toolkit/SKILL.md`](references/math-toolkit/SKILL.md) |
 | **11. Prediction Market Tickets** | Analyzing Polymarket/Jupiter/sports/esports lines and generating `[ticket#][sector][matchup][pick].md` | [`references/prediction-market-analytics/SKILL.md`](references/prediction-market-analytics/SKILL.md) & [`scripts/fetch_market_odds.py`](scripts/fetch_market_odds.py) |
 | **12. Prediction Oracle & Risk Review** | Auditing oracle resolution signals, market-implied probabilities, and trading-agent risk | [`references/prediction-market-oracle-research/SKILL.md`](references/prediction-market-oracle-research/SKILL.md) & [`references/prediction-market-risk-review/SKILL.md`](references/prediction-market-risk-review/SKILL.md) |
+| **13. Domain Finance & Commerce Ops** | Customer billing, contracts, customs trade compliance, energy procurement, token decimals, Itô baskets, or x402 | [`references/INDEX.md#domain-ops`](references/INDEX.md#domain-ops) |
 
 ## Execution Workflow
 1. Identify the 1–3 relevant rows from the routing table above based on the user's goal.

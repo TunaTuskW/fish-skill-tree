@@ -1,67 +1,53 @@
 # fish-skill-tree
 
-Modular skill and plugin tree for **Google Antigravity**, **Claude Code**, **Cursor**, and **Codex**.
+Modular skill and plugin tree for **Google Antigravity**, **Claude Code**, **OpenAI Codex**, **Cursor**, and any `SKILL.md`-compatible agent.
 
-Instead of loading hundreds of skill prompts into every conversation, `fish-skill-tree` separates modular **4 sector plugins** + **4 partner plugins** (`[plugin]/`) from **294 non-overlapping standalone skills** (`[skill]/`) with zero duplicate skills between plugins and standalone vaults.
+`fish-skill-tree` packages domain expertise into **6 modular sector plugins** + **4 partner plugins** (`[plugin]/`) and keeps **`12` high-frequency direct tools** in `[skill]/` with zero plugin/skill duplication and 2-tier progressive disclosure (`SKILL.md` $\rightarrow$ `references/INDEX.md` $\rightarrow$ playbook).
 
 ## Repository structure
 
 ```text
 fish-skill-tree/
-├── [plugin]/                        # 4 sector routers + 4 workspace/partner plugins (8 total)
-│   ├── finance-quant-suite/         # /finance router (13 sub-playbooks)
-│   ├── engineering-core-suite/      # /engineering router (10 sub-playbooks, incl. sensitive-data-guard & billion-context)
-│   ├── design-frontend-suite/       # /design router (8 native sub-playbooks + modern-web-guidance-plugin links)
-│   ├── marketing-growth-suite/      # /marketing router (10 sub-playbooks + humanizer v4.0.0 patterns)
+├── [plugin]/                        # 6 domain sector suites + 4 partner plugins (10 total)
+│   ├── finance-quant-suite/         # /finance router (valuation, quant, accounting, commerce/prediction ops)
+│   ├── engineering-core-suite/      # /engineering router (core architecture, CodeGraph, 56 language/framework packs, 49 DevOps/DB/QA packs)
+│   ├── engineering-ops-suite/       # /engineering-ops router (18 security/compliance packs, 55 agent/orchestration packs, 20 context/cost/ML packs)
+│   ├── design-frontend-suite/       # /design router (UI/UX, design tokens, a11y, motion, slides, liquid glass + web guidance link)
+│   ├── marketing-growth-suite/      # /marketing router (brand-marketing studio, SEO, content-writing + humanizer v4.0.0, research, growth)
+│   ├── ops-research-suite/          # /ops-research router (media/video, homelab networking, scientific/healthcare, business/doc ops)
 │   ├── gdocs/                       # Google Docs v0.0.9 read/write/markdown sync plugin
 │   ├── gsheets/                     # Google Sheets v0.0.8 read/write/formula/chart plugin
 │   ├── context7/                    # Context7 v1.0.1 live library docs MCP & skill plugin
 │   └── modern-web-guidance-plugin/  # Chrome Modern Web Guidance v1.0.0 & Manifest V3 skills
-├── [skill]/                         # 294 unique standalone skills (humanizer v4.0.0, security-guard, framework skills, etc.)
+├── [skill]/                         # 12 standalone direct slash/CLI tools (zero overlap with plugins)
 ├── AGENT_GUIDE.md                   # Multi-agent install guide (Claude Code, Codex, Antigravity, Cursor, and portable agents)
 └── [mcp]/                           # Sanitized global GEMINI.md, MCP templates/bridges (codegraph, davinci-resolve, legalzoom, gmp-code-assist), and 18 IDE context-mode packs
 ```
 
-## Sector plugins
+## Standalone tools (`[skill]/`)
 
-When invoked, each sector router loads a compact routing table and reads only the 1–3 matching reference playbooks under `references/`:
+Kept directly at top level for single-command activation or lightweight per-repo symlinking:
 
-| Command | Plugin | Included sub-playbooks |
-| :--- | :--- | :--- |
-| `/finance` | `finance-quant-suite` | `3-statement-model`, `accounting-tools`, `audit-xls`, `comps-analysis`, `data-analytics`, `dcf-model`, `finance-billing-ops`, `financial-analysis`, `lbo-model`, `math-toolkit`, `prediction-market-analytics`, `prediction-market-oracle-research`, `prediction-market-risk-review` |
-| `/engineering` | `engineering-core-suite` | `api-design`, `backend-patterns`, `billion-context`, `codegraph`, `database-assistant`, `gemini-api-dev`, `gemini-live-api-dev`, `gemini-omni-flash-api`, `google-antigravity-sdk`, `sensitive-data-guard` |
-| `/design` | `design-frontend-suite` | `design-system`, `frontend-a11y`, `frontend-design-direction`, `frontend-slides`, `liquid-glass-design`, `motion-advanced`, `ui-demo`, `ui-ux-conversion-design` (routes web APIs & extensions to `modern-web-guidance-plugin`) |
-| `/marketing` | `marketing-growth-suite` | `brand-discovery`, `brand-marketing`, `brand-voice`, `content-engine`, `content-writing` (backed by `blader/humanizer` v4.0.0), `crosspost`, `lead-intelligence`, `market-research`, `marketing-campaign`, `seo` |
-
-### Standalone & security highlights
-
-- **`humanizer` (`v4.0.0`)**: Integrated from `blader/humanizer` at `[skill]/humanizer/` for direct `/humanizer` invocation (with pattern reference shared inside `marketing-growth-suite/content-writing`). Covers 26 AI-writing tells across 6 categories, prompt-injection defense, optional voice matching, and Pasted / File / Embedded output modes.
-- **`sensitive-data-guard` & `security-guard`**: Canonical secret scanner inside `engineering-core-suite` (`scan_secrets.py`) plus standalone `[skill]/security-guard/` (`scan_security_ast.py`) to detect leaked credentials, high-entropy hex/OAuth secrets, AST dynamic execution (`eval`/`exec`/`compile`), `shell=True`, webhook exfiltration, and unpinned curl-pipe downloads.
+`humanizer`, `security-guard`, `search-first`, `codebase-onboarding`, `tdd-workflow`, `git-workflow`, `verification-loop`, `documentation-lookup`, `terminal-ops`, `token-budget-advisor`, `workspace-surface-audit`, `conventional-commit-review`.
 
 ## Quick start
 
 See [AGENT_GUIDE.md](AGENT_GUIDE.md) for copy-pasteable setup instructions for **Claude Code**, **OpenAI Codex**, **Google Antigravity**, **Cursor**, **Gemini CLI**, and other `.agents/skills/` tools.
 
-### 1. Install plugins (Google Antigravity)
-
-Copy `[plugin]/` into your Antigravity plugins directory:
+### 1. Install modular plugins (Google Antigravity)
 
 ```bash
 mkdir -p ~/.gemini/config/plugins
 cp -R "[plugin]/"* ~/.gemini/config/plugins/
 ```
 
-### 2. Link a standalone vault skill into a project
-
-Keep `[skill]/` as an on-disk vault and symlink specific framework or utility skills into a project workspace only when needed:
+### 2. Link a standalone tool into a project
 
 ```bash
-ln -s "$(pwd)/[skill]/rust-engineer" /path/to/your-project/.agents/skills/rust-engineer
+ln -s "$(pwd)/[skill]/humanizer" /path/to/your-project/.agents/skills/humanizer
 ```
 
 ### 3. Secret and AST security scanning
-
-Scan the workspace or staged diff directly with the built-in guard skills:
 
 ```bash
 python3 "[plugin]/engineering-core-suite/skills/engineering/references/sensitive-data-guard/scripts/scan_secrets.py" --staged

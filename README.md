@@ -18,6 +18,7 @@ fish-skill-tree/
 │   ├── context7/                    # Context7 v1.0.1 live library docs MCP & skill plugin
 │   └── modern-web-guidance-plugin/  # Chrome Modern Web Guidance v1.0.0 & Manifest V3 skills
 ├── [skill]/                         # 323 standalone skills (brand-marketing, humanizer v4.0.0, security-guard, sensitive-data-guard, etc.)
+├── AGENT_GUIDE.md                   # Multi-agent install guide (Claude Code, Codex, Antigravity, Cursor, and portable agents)
 └── [mcp]/                           # MCP configs, lazy tool schemas (chrome_devtools, codegraph), and context-mode IDE configs
 ```
 
@@ -39,6 +40,8 @@ When invoked, each sector router loads a compact routing table and reads only th
 - **`sensitive-data-guard` & `security-guard`**: Detect hardcoded credentials, high-entropy hex/OAuth secrets, AST dynamic execution (`eval`/`exec`/`compile`), `shell=True`, webhook exfiltration, and unpinned curl-pipe downloads.
 
 ## Quick start
+
+See [AGENT_GUIDE.md](AGENT_GUIDE.md) for copy-pasteable setup instructions for **Claude Code**, **OpenAI Codex**, **Google Antigravity**, **Cursor**, **Gemini CLI**, and other `.agents/skills/` tools.
 
 ### 1. Install plugins (Google Antigravity)
 

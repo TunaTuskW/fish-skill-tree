@@ -86,9 +86,13 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         transcript_file = sys.argv[1]
     else:
-        # Default fallback to Antigravity appData transcript if present
+        # Default fallback to most recently modified Antigravity appData transcript if present
         default_path = Path.home() / ".gemini/antigravity/brain"
-        candidates = list(default_path.glob("*/.system_generated/logs/transcript.jsonl"))
+        candidates = sorted(
+            default_path.glob("*/.system_generated/logs/transcript.jsonl"),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )
         if candidates:
             transcript_file = str(candidates[0])
         else:

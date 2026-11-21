@@ -91,3 +91,13 @@ The Antigravity CLI (`agy`) runs a closed-source Go language server communicatin
 1. **Input Sandboxing First**: Follow Section 5 of `AGENTS.md`—intercept raw bulk data to disk before it reaches conversation context.
 2. **Periodic Checkpoint Audits**: In sessions exceeding 20 turns or 50,000 tokens, run `check_acp_status.py` or inspect context metrics to verify that prior milestones are properly digested.
 3. **Single Fold Invariant**: Ensure past milestones are folded once into Tier-1; do not re-summarize past summaries unless escalating to Tier-2 pagoda compaction.
+
+---
+
+## 5. Anti-Polling & Session Compaction Protocol (Preventing Multi-Million Token Bloat)
+
+1. **Zero Busy-Wait Polling**: Never run consecutive `manage_task`, `schedule`, or shell `sleep` polling loops waiting on background jobs or subagents. Rely strictly on reactive wakeup notifications and event-driven completion callbacks.
+2. **Batch Over Micro-Calls**: Consolidate repetitive CLI or API mutations (e.g., spreadsheet cell updates, file inspections, test runs) into a single batched script or `raw-batch` payload instead of executing 10+ sequential tool calls.
+3. **Proactive Disk Offloading (`>50K` Token Guard)**:
+   - Any command output, log dump, or dataset exceeding 100 lines must be redirected to a scratch file (`scratch/` or `/tmp/`) and queried via targeted Python/shell filters.
+   - When `check_acp_status.py` reports `TRIGGER READY` ($\ge 22.5\text{K}$ compressible tokens outside the 50K active window), persist current milestone state to `progress.md` and trigger `/compact` or incremental folding immediately rather than carrying multi-megabyte history across turns.

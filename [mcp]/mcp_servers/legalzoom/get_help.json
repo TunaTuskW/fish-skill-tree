@@ -1,0 +1,1 @@
+{"name":"get_help","description":"Call this when you encounter an error, are unsure how to proceed, the user asks for help, or the user asks about the server version or build. Returns support contact info and build details for troubleshooting.","parameters":{"properties":{},"type":"object"}}

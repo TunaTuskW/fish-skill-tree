@@ -7,11 +7,21 @@
         "--mcp"
       ]
     },
-    "legalzoom": {
-      "serverUrl": "https://www.legalzoom.com/mcp"
+    "davinci-resolve": {
+      "command": "python3",
+      "args": [
+        "./[mcp]/mcp_servers/davinci-resolve-mcp/server.py"
+      ],
+      "disabled": true
     },
     "gmp-code-assist": {
       "serverUrl": "https://mapscodeassist.googleapis.com/mcp"
+    },
+    "legalzoom": {
+      "command": "python3",
+      "args": [
+        "./[mcp]/mcp_servers/legalzoom/bridge.py"
+      ]
     }
   }
 }

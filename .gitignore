@@ -29,14 +29,16 @@ auth.json
 # Agent Metadata, Diagnostics & Transcripts
 .agents/
 
-# Machine-local personal skills excluded from public repo
+# Machine-local personal skills & enchantment artifacts excluded from public repo
 trading-log-sync/
+skill tree enchantment/
 
 # CodeGraph AST Index & Cache
 .codegraph/
 
 # Python & Node caches
 __pycache__/
+.pytest_cache/
 *.py[cod]
 *$py.class
 .venv/

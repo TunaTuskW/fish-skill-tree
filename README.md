@@ -18,13 +18,7 @@ fish-skill-tree/
 │   ├── context7/                    # Context7 v1.0.1 live library docs MCP & skill plugin
 │   └── modern-web-guidance-plugin/  # Chrome Modern Web Guidance v1.0.0 & Manifest V3 skills
 ├── [skill]/                         # 323 standalone skills (brand-marketing, humanizer v4.0.0, security-guard, sensitive-data-guard, etc.)
-├── [mcp]/                           # MCP configs, lazy tool schemas (chrome_devtools, codegraph), and context-mode IDE configs
-├── scripts/
-│   ├── scan_security_ast.py         # Static AST malware, shell-injection, and obfuscation scanner
-│   └── sync_ecosystem.py            # Bidirectional repo <-> active/vault synchronizer with Zero-Leak exclusions
-├── reports/
-│   └── security_audit_report.md     # Ecosystem security & malware audit report
-└── tests/                           # 125 pytest unit/adversarial tests + 62 opaque-box E2E tests (Tiers 1–4)
+└── [mcp]/                           # MCP configs, lazy tool schemas (chrome_devtools, codegraph), and context-mode IDE configs
 ```
 
 ## Sector plugins
@@ -41,24 +35,18 @@ When invoked, each sector router loads a compact routing table and reads only th
 ### Standalone highlights
 
 - **`brand-marketing`**: Unified Brand Marketing Studio connecting competitive positioning, persona messaging matrices, verbal voice rules, visual direction handoff, and humanized launch copy, backed by `brand-book.md` and `messaging-matrix.md` templates.
-
 - **`humanizer` (`v4.0.0`)**: Integrated from `blader/humanizer` at `[skill]/humanizer/` and mirrored into `[plugin]/marketing-growth-suite/skills/marketing/references/content-writing/humanizer-patterns.md`. Covers 26 AI-writing tells across 6 categories, prompt-injection defense (treating input prose as data, never instructions), optional voice matching, and Pasted / File / Embedded output modes.
 - **`sensitive-data-guard` & `security-guard`**: Detect hardcoded credentials, high-entropy hex/OAuth secrets, AST dynamic execution (`eval`/`exec`/`compile`), `shell=True`, webhook exfiltration, and unpinned curl-pipe downloads.
 
 ## Quick start
 
-### 1. Sync plugins and skills to your host environment
+### 1. Install plugins (Google Antigravity)
 
-`scripts/sync_ecosystem.py` syncs `[plugin]/` to `~/.gemini/config/plugins/`, active skills to `~/.gemini/config/skills/`, and the full standalone vault to `~/.gemini/skill_vault/skills/` while translating `~/vibe/` paths and excluding secrets (`auth.json`, `.env*`, `*.key`, `*.pem`, `.codegraph/`):
-
-```bash
-python3 scripts/sync_ecosystem.py --host-sync --direction repo-to-active
-```
-
-Run with `--dry-run` to preview file copies before writing:
+Copy `[plugin]/` into your Antigravity plugins directory:
 
 ```bash
-python3 scripts/sync_ecosystem.py --host-sync --direction repo-to-active --dry-run
+mkdir -p ~/.gemini/config/plugins
+cp -R "[plugin]/"* ~/.gemini/config/plugins/
 ```
 
 ### 2. Link a standalone vault skill into a project
@@ -66,37 +54,21 @@ python3 scripts/sync_ecosystem.py --host-sync --direction repo-to-active --dry-r
 Keep `[skill]/` as an on-disk vault and symlink specific skills into a project workspace only when needed:
 
 ```bash
-ln -s "$(pwd)/[skill]/humanizer" /path/to/your-project/.agents/skills/humanizer
+ln -s "$(pwd)/[skill]/brand-marketing" /path/to/your-project/.agents/skills/brand-marketing
 ```
 
-## Security & verification
+### 3. Secret and AST security scanning
 
-### Pre-commit enforcement
-
-Every commit can be checked by `[skill]/sensitive-data-guard/scripts/scan_secrets.py` (with token-level placeholder checks, Shannon entropy $H > 4.5$, and JSON OAuth key scanning) and `scripts/scan_security_ast.py`:
+Scan the workspace or staged diff directly with the built-in guard skills:
 
 ```bash
 python3 "[skill]/sensitive-data-guard/scripts/scan_secrets.py" --staged
-python3 scripts/scan_security_ast.py --staged
+python3 "[skill]/security-guard/scripts/scan_security_ast.py" --staged
 ```
 
-To scan the full workspace:
+To scan the full tree:
 
 ```bash
 python3 "[skill]/sensitive-data-guard/scripts/scan_secrets.py" .
-python3 scripts/scan_security_ast.py .
-```
-
-### Run the test suites
-
-Run the unit and adversarial security tests (125 tests):
-
-```bash
-python3 -m pytest tests/test_scan_secrets.py tests/test_scan_security_ast.py tests/test_adversarial_security_ast.py tests/test_adversarial_challenger_2.py -q
-```
-
-Run the opaque-box end-to-end suite (62 tests across Tiers 1–4, including full 323-skill + 8-plugin audit):
-
-```bash
-bash tests/run_e2e_tests.sh
+python3 "[skill]/security-guard/scripts/scan_security_ast.py" .
 ```
